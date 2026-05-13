@@ -1,0 +1,36 @@
+<!-- only shows if errorMessage signal has a value - i.e. API is down -->
+@if (errorMessage()) {
+  <div class="alert alert-warning mt-4">
+    <h4>There was a problem</h4>
+    <!-- displays the error message stored in the signal -->
+    <p>{{ errorMessage() }}</p>
+  </div>
+}
+
+<div class="container mt-4">
+  <h2>User Details</h2>
+
+  <!-- loop through every item in the results signal -->
+  <!-- results() - brackets because it's a signal -->
+  <!-- user - the name we give each individual item as we loop -->
+  <!-- track user.name - Angular needs a unique field to track each item -->
+  @for (user of results(); track user.name) {
+
+    <!-- a Bootstrap card for each user -->
+    <div class="card mb-3">
+      <div class="card-body">
+
+        <!-- displays the name field from the IUser interface -->
+        <h5 class="card-title">{{ user.name }}</h5>
+
+        <!-- displays the email field from the IUser interface -->
+        <p>{{ user.email }}</p>
+
+        <!-- displays the phone field from the IUser interface -->
+        <p>{{ user.phone }}</p>
+
+      </div>
+    </div>
+  }
+
+</div>
